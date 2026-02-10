@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>MORIANSを支援してくださった皆さまへ｜森でほっとココア vol.3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --color-bg: #f5f1e8;
+  --color-bg-warm: #ede8db;
+  --color-text: #3a3530;
+  --color-text-light: #6b6259;
+  --color-primary: #2c5f7c;
+  --color-primary-light: #3d7a9c;
+  --color-green: #5a7a3b;
+  --color-green-light: #7ba05b;
+  --color-accent: #c96b20;
+  --color-accent-light: #e67e22;
+  --color-secret-bg: #1e3a2a;
+  --color-secret-text: #e8e0d0;
+  --color-white: #fefcf7;
+  --font-serif: 'Noto Serif JP', serif;
+  --font-sans: 'Noto Sans JP', sans-serif;
+  --max-width: 720px;
+  --section-gap: 5rem;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--color-primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ===== Header ===== */
+.header {
+  text-align: center;
+  padding: 3rem 1.5rem 2.5rem;
+  background: linear-gradient(180deg, var(--color-white) 0%, var(--color-bg) 100%);
+}
+
+.header-logo {
+  width: 120px;
+  height: auto;
+  margin: 0 auto 1.5rem;
+}
+
+.header-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.header-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+  letter-spacing: 0.08em;
+}
+
+.header-line {
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--color-green-light);
+  margin: 1.5rem auto 0;
+  border: none;
+}
+
+/* ===== Main Content ===== */
+.main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* ===== Section ===== */
+.section {
+  margin-bottom: var(--section-gap);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--color-green);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: var(--color-green-light);
+  margin-top: 0.75rem;
+}
+
+.section p {
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+  line-height: 2;
+  color: var(--color-text);
+}
+
+.section p:last-child { margin-bottom: 0; }
+
+/* ===== Intro Message ===== */
+.intro {
+  padding-top: 2rem;
+}
+
+.intro p {
+  font-size: 0.95rem;
+  line-height: 2.1;
+}
+
+/* ===== Hero Image ===== */
+.hero-image {
+  width: 100%;
+  border-radius: 8px;
+  margin: 2rem 0;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.hero-image:hover { transform: scale(1.01); }
+
+/* ===== Photo Grid ===== */
+.photo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 1.5rem 0;
+}
+
+.photo-grid.three-col {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.photo-grid img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo-grid img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.photo-grid .wide {
+  grid-column: 1 / -1;
+  height: 220px;
+}
+
+/* ===== Single Photo ===== */
+.photo-single {
+  margin: 1.5rem 0;
+}
+
+.photo-single img {
+  width: 100%;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.photo-single img:hover { transform: scale(1.01); }
+
+.photo-caption {
+  font-size: 0.78rem;
+  color: var(--color-text-light);
+  margin-top: 0.5rem;
+  text-align: left;
+}
+
+/* ===== Season Cards ===== */
+.season-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin: 1.5rem 0;
+}
+
+.season-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.season-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.season-card:hover img { transform: scale(1.08); }
+
+.season-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.6rem;
+  background: linear-gradient(transparent, rgba(0,0,0,0.6));
+}
+
+.season-card-label {
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* ===== Secret Section ===== */
+.secret-section {
+  background: var(--color-secret-bg);
+  color: var(--color-secret-text);
+  margin-left: -1.25rem;
+  margin-right: -1.25rem;
+  padding: 3rem 1.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.secret-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-green), var(--color-accent-light), var(--color-green));
+}
+
+.secret-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.secret-badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--color-accent-light);
+  border: 1px solid var(--color-accent-light);
+  border-radius: 20px;
+  padding: 0.25rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.secret-section .section-title {
+  color: var(--color-secret-text);
+  font-size: 1.3rem;
+}
+
+.secret-section .section-title::after {
+  background: var(--color-accent-light);
+}
+
+.secret-section p {
+  color: rgba(232, 224, 208, 0.9);
+  font-size: 0.95rem;
+  line-height: 2;
+  margin-bottom: 1.2rem;
+}
+
+.secret-highlight {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-accent-light) !important;
+  text-align: center;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(232, 224, 208, 0.15);
+  border-bottom: 1px solid rgba(232, 224, 208, 0.15);
+  margin: 1.5rem 0 !important;
+  line-height: 1.8;
+}
+
+/* ===== Closing ===== */
+.closing {
+  text-align: center;
+  padding: 2rem 0 1rem;
+}
+
+.closing p {
+  font-size: 0.95rem;
+  line-height: 2.1;
+  text-align: left;
+}
+
+/* ===== Links Section ===== */
+.links {
+  background: var(--color-bg-warm);
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  margin: 2rem 0;
+}
+
+.links-title {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.links-list {
+  list-style: none;
+}
+
+.links-list li {
+  margin-bottom: 0.75rem;
+  font-size: 0.88rem;
+}
+
+.links-list li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-primary);
+  transition: color 0.2s;
+}
+
+.links-list li a:hover { color: var(--color-accent); }
+
+.links-list li a::before {
+  content: '→';
+  font-size: 0.8rem;
+  color: var(--color-green-light);
+}
+
+/* ===== Footer ===== */
+.footer {
+  text-align: center;
+  padding: 2rem 1.5rem 3rem;
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  margin-top: 2rem;
+}
+
+.footer-logo {
+  width: 60px;
+  margin: 0 auto 0.75rem;
+  opacity: 0.5;
+}
+
+/* ===== Lightbox ===== */
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.9);
+  z-index: 1000;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.lightbox.active { display: flex; }
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+  animation: lightboxFade 0.3s ease;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1rem; right: 1.5rem;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  line-height: 1;
+  z-index: 1001;
+}
+
+.lightbox-close:hover { opacity: 1; }
+
+@keyframes lightboxFade {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+  .header-title { font-size: 1.25rem; }
+  .section-title { font-size: 1.2rem; }
+  .season-cards { grid-template-columns: 1fr; gap: 8px; }
+  .season-card img { height: 140px; }
+  .photo-grid img { height: 140px; }
+  .photo-grid .wide { height: 180px; }
+  .photo-grid.three-col { grid-template-columns: 1fr 1fr; }
+  :root { --section-gap: 3.5rem; }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .header-title { font-size: 1.35rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header class="header">
+  <img src="images/logo_morians.png" alt="MORIANS 城陽森のボランティア ロゴ" class="header-logo">
+  <h1 class="header-title">MORIANSを支援してくださった<br>皆さまへ</h1>
+  <p class="header-subtitle">森でほっとココア vol.3 ── 支援者限定ページ</p>
+  <hr class="header-line">
+</header>
+
+<!-- ===== Main ===== -->
+<main class="main">
+
+  <!-- Intro -->
+  <section class="section intro">
+    <p>このたびは、クラウドファンディングにて「MORIANSを応援する」リターンをお選びいただき、本当にありがとうございます。</p>
+    <p>このページでは、皆さまのご支援への感謝をお伝えするとともに、森でほっとココア vol.3 の開催報告、そして MORIANS の日頃の活動をご紹介いたします。</p>
+    <p>普段なかなかお伝えできない活動の様子を、写真とともにお届けします。どうぞごゆっくりご覧ください。</p>
+
+    <div class="photo-single">
+      <img src="images/99_field.jpg" alt="冬の若宮の森。青空の下に広がる落葉した木々と東屋" class="lightbox-trigger">
+      <p class="photo-caption">MORIANSの活動拠点、京都府城陽市・若宮の森</p>
+    </div>
+  </section>
+
+  <!-- About MORIANS -->
+  <section class="section">
+    <p class="section-label">About MORIANS</p>
+    <h2 class="section-title">若宮の森を守る人たち</h2>
+
+    <p>城陽MORIANS（じょうよう モリアンズ）は、京都府城陽市の若宮の森を拠点に活動する森林ボランティアグループです。森林の環境保全や里山管理を通じて、地域の自然を守り続けています。</p>
+    <p>この森は四季折々の恵みをもたらしてくれます。春にはタケノコ、秋には栗、そして畑で育てたさつまいもを使ったほしいも作り。自然と人の営みが、ここでは穏やかにつながっています。</p>
+
+    <div class="season-cards">
+      <div class="season-card lightbox-trigger-wrap">
+        <img src="images/60_takenoko.jpg" alt="軽トラックの荷台いっぱいに積まれた、採れたてのタケノコ" class="lightbox-trigger">
+        <div class="season-card-overlay">
+          <span class="season-card-label">春 ── タケノコ</span>
+        </div>
+      </div>
+      <div class="season-card lightbox-trigger-wrap">
+        <img src="images/60_marron.jpg" alt="森の地面に落ちた、毬の中の栗" class="lightbox-trigger">
+        <div class="season-card-overlay">
+          <span class="season-card-label">秋 ── 栗</span>
+        </div>
+      </div>
+      <div class="season-card lightbox-trigger-wrap">
+        <img src="images/60_hoshiimo.jpg" alt="MORIANSメンバーによる焼き芋・ほしいも作りの風景" class="lightbox-trigger">
+        <div class="season-card-overlay">
+          <span class="season-card-label">通年 ── ほしいも</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="photo-single">
+      <img src="images/98_meeting.jpg" alt="東屋でくつろぎながらミーティングするMORIANSのメンバーたち" class="lightbox-trigger">
+      <p class="photo-caption">東屋でのミーティング風景。焚き火の煙が漂う中、和やかに話し合います</p>
+    </div>
+  </section>
+
+  <!-- Satoyama Experience -->
+  <section class="section">
+    <p class="section-label">Satoyama Experience</p>
+    <h2 class="section-title">里山自然体験</h2>
+
+    <p>MORIANSでは毎年7月、地域のこどもたちを招いて「里山自然体験」を開催しています。竹の弓矢づくりや苗ポットづくりなど、森の素材を使った体験をメンバーが丁寧に指導します。</p>
+    <p>こどもたちの真剣な眼差しと、それを見守るメンバーの温かい笑顔。この森で育まれる関係が、地域のつながりを支えています。</p>
+
+    <div class="photo-grid">
+      <img src="images/70_satoyama3.jpg" alt="東屋で竹工作を教えるMORIANSメンバーと、集中して取り組む子どもたち" class="lightbox-trigger wide">
+      <img src="images/70_satoyama1.jpg" alt="東屋で竹工作に取り組む子どもたちとMORIANSメンバー" class="lightbox-trigger">
+      <img src="images/70_satoyama5.jpg" alt="MORIANSメンバーが子どもに竹を使った作業を指導する様子" class="lightbox-trigger">
+      <img src="images/70_satoyama4.jpg" alt="苗ポットづくりを教わる子どもたちの様子" class="lightbox-trigger">
+      <img src="images/70_satoyama2.jpg" alt="森の中の東屋周辺で休憩するMORIANSメンバー" class="lightbox-trigger">
+    </div>
+  </section>
+
+  <!-- Vol.3 Activities -->
+  <section class="section">
+    <p class="section-label">Hot Cocoa vol.3</p>
+    <h2 class="section-title">森でほっとココア vol.3 での活動</h2>
+
+    <p>森でほっとココア vol.3 は、学生スタッフ、クラウドファンディングで募った当日サポーター、そしてMORIANSメンバーの三者が力を合わせて実現しました。</p>
+    <p>会場の設営から、ポトフの材料仕込み、焼きいもの準備まで。MORIANSのメンバーは慣れた手つきで野外調理をリードしながら、初めて森を訪れた学生やサポーターに優しく手ほどきをしてくれました。</p>
+    <p>彼らの日頃の活動あってこその「森でほっとココア」です。</p>
+
+    <div class="photo-grid">
+      <img src="images/02_prepsre1.jpg" alt="MORIANSメンバーと学生スタッフ、サポーターが協力して焼きいもの準備をする様子" class="lightbox-trigger wide">
+      <img src="images/02_prepsre3.jpg" alt="MORIANSメンバーがさつまいもを洗う様子" class="lightbox-trigger">
+      <img src="images/60_potaufeu1.jpg" alt="学生スタッフとサポーターが協力してポトフの野菜を準備する、逆光の中の温かい風景" class="lightbox-trigger">
+      <img src="images/02_prepsre4.jpg" alt="東屋で学生スタッフと協力して材料の仕込みをする全体風景" class="lightbox-trigger wide">
+    </div>
+
+    <div class="photo-single">
+      <img src="images/02_prepsre2.jpg" alt="東屋周辺でコンテナの荷物を整理する学生スタッフ" class="lightbox-trigger">
+    </div>
+  </section>
+
+  <!-- New Connections -->
+  <section class="section">
+    <p class="section-label">New Connections</p>
+    <h2 class="section-title">新しい出会いと交流</h2>
+
+    <p>今回のイベントでは、MORIANSのメンバーと学生スタッフ・当日サポーターとの間に新しい交流が生まれました。普段は静かに森を守り続けている彼らが、若い世代と一緒に作業し、笑い合う姿はとても印象的でした。</p>
+    <p>森でほっとココアが、こうした世代を超えたつながりの場になっていることを、改めてうれしく感じています。</p>
+
+    <div class="photo-single">
+      <img src="images/03_supporters.jpg" alt="学生スタッフと当日サポーターの笑顔の集合写真" class="lightbox-trigger">
+      <p class="photo-caption">学生スタッフ・当日サポーターの皆さん</p>
+    </div>
+
+    <div class="photo-single">
+      <img src="images/88_allofmembers.jpg" alt="森でほっとココア vol.3 参加者全員の集合写真" class="lightbox-trigger">
+      <p class="photo-caption">森でほっとココア vol.3 全員集合</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Secret Section ===== -->
+<section class="secret-section section">
+  <div class="secret-inner">
+    <span class="secret-badge">&#x1F512; 支援者限定情報</span>
+    <h2 class="section-title">ここだけの話</h2>
+    <p>ここからは、MORIANSを支援してくださった皆さまだけにお伝えするお知らせです。</p>
+    <p class="secret-highlight">へいなかが、来年度の<br>MORIANS代表に内定しました。</p>
+    <p>第一回「森でほっとココア」の開催時にMORIANSというロゴと愛称を作ったへいなかが、ついに代表を務めることになりました。森でほっとココアの活動を通じて深まったMORIANSとの関係が、新しいかたちで続いていきます。</p>
+    <p>これからのMORIANSの活動にも、ぜひご注目ください。</p>
+  </div>
+</section>
+
+<!-- ===== Closing & Links ===== -->
+<main class="main">
+
+  <section class="section closing">
+    <h2 class="section-title">おわりに</h2>
+    <p>改めまして、MORIANSへのご支援を心より感謝いたします。皆さまのお気持ちが、この森の活動を支え、次の世代へとつないでいく力になっています。</p>
+    <p>若宮の森はこれからも、MORIANSの手で守られ、育まれていきます。その歩みを、引き続き温かく見守っていただけたら幸いです。</p>
+
+    <div class="links">
+      <p class="links-title">MORIANSをもっと知る</p>
+      <ul class="links-list">
+        <li><a href="https://sites.google.com/view/joyo-morians" target="_blank" rel="noopener">MORIANS 公式ホームページ</a></li>
+        <li><a href="https://www.instagram.com/joyo.morians/" target="_blank" rel="noopener">MORIANS Instagram</a></li>
+        <li><a href="https://note.com/heino_naka/n/n3cb02193b3a6" target="_blank" rel="noopener">活動報告①（へいなか note）</a></li>
+        <li><a href="https://note.com/heino_naka/n/n68042e764479" target="_blank" rel="noopener">活動報告②（へいなか note）</a></li>
+        <li><a href="https://for-good.net/project/1003058" target="_blank" rel="noopener">クラウドファンディングページ</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <img src="images/logo_morians.png" alt="MORIANS" class="footer-logo">
+  <p>森でほっとココア vol.3 ── 支援者限定ページ</p>
+</footer>
+
+<!-- ===== Lightbox ===== -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close">&times;</span>
+  <img src="" alt="拡大画像" id="lightbox-img">
+</div>
+
+<script>
+// Lightbox
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+document.querySelectorAll('.lightbox-trigger').forEach(img => {
+  img.addEventListener('click', () => {
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+lightbox.addEventListener('click', () => {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+});
+
+// Scroll Reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.section').forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
