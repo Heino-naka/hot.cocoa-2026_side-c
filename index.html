@@ -59,6 +59,8 @@ a:hover { text-decoration: underline; }
   width: 120px;
   height: auto;
   margin: 0 auto 1.5rem;
+  opacity: 0;
+  animation: fadeInDown 0.8s ease 0.2s forwards;
 }
 
 .header-title {
@@ -69,6 +71,8 @@ a:hover { text-decoration: underline; }
   line-height: 1.6;
   letter-spacing: 0.02em;
   margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.5s forwards;
 }
 
 .header-subtitle {
@@ -77,6 +81,8 @@ a:hover { text-decoration: underline; }
   font-weight: 400;
   color: var(--color-text-light);
   letter-spacing: 0.08em;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease 0.7s forwards;
 }
 
 .header-line {
@@ -86,6 +92,18 @@ a:hover { text-decoration: underline; }
   background: var(--color-green-light);
   margin: 1.5rem auto 0;
   border: none;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease 0.9s forwards;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ===== Main Content ===== */
@@ -99,8 +117,8 @@ a:hover { text-decoration: underline; }
 .section {
   margin-bottom: var(--section-gap);
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .section.visible {
@@ -130,10 +148,15 @@ a:hover { text-decoration: underline; }
 .section-title::after {
   content: '';
   display: block;
-  width: 30px;
+  width: 0;
   height: 2px;
   background: var(--color-green-light);
   margin-top: 0.75rem;
+  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+}
+
+.section.visible .section-title::after {
+  width: 30px;
 }
 
 .section p {
@@ -155,17 +178,6 @@ a:hover { text-decoration: underline; }
   line-height: 2.1;
 }
 
-/* ===== Hero Image ===== */
-.hero-image {
-  width: 100%;
-  border-radius: 8px;
-  margin: 2rem 0;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.hero-image:hover { transform: scale(1.01); }
-
 /* ===== Photo Grid ===== */
 .photo-grid {
   display: grid;
@@ -184,12 +196,12 @@ a:hover { text-decoration: underline; }
   object-fit: cover;
   border-radius: 6px;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
 }
 
 .photo-grid img:hover {
   transform: scale(1.03);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
 .photo-grid .wide {
@@ -206,7 +218,7 @@ a:hover { text-decoration: underline; }
   width: 100%;
   border-radius: 6px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .photo-single img:hover { transform: scale(1.01); }
@@ -237,7 +249,7 @@ a:hover { text-decoration: underline; }
   width: 100%;
   height: 160px;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .season-card:hover img { transform: scale(1.08); }
@@ -249,7 +261,10 @@ a:hover { text-decoration: underline; }
   right: 0;
   padding: 0.6rem;
   background: linear-gradient(transparent, rgba(0,0,0,0.6));
+  transition: padding-bottom 0.3s ease;
 }
+
+.season-card:hover .season-card-overlay { padding-bottom: 0.8rem; }
 
 .season-card-label {
   font-family: var(--font-serif);
@@ -278,6 +293,12 @@ a:hover { text-decoration: underline; }
   right: 0;
   height: 3px;
   background: linear-gradient(90deg, var(--color-green), var(--color-accent-light), var(--color-green));
+  transform: scaleX(0);
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+}
+
+.secret-section.visible::before {
+  transform: scaleX(1);
 }
 
 .secret-inner {
@@ -305,6 +326,10 @@ a:hover { text-decoration: underline; }
 
 .secret-section .section-title::after {
   background: var(--color-accent-light);
+}
+
+.secret-section.visible .section-title::after {
+  width: 30px;
 }
 
 .secret-section p {
@@ -357,28 +382,32 @@ a:hover { text-decoration: underline; }
 
 .links-list {
   list-style: none;
+  padding-left: 0;
 }
 
 .links-list li {
   margin-bottom: 0.75rem;
   font-size: 0.88rem;
+  padding-left: 1.4em;
+  position: relative;
+}
+
+.links-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.82rem;
+  color: var(--color-green-light);
+  line-height: inherit;
 }
 
 .links-list li a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
   color: var(--color-primary);
   transition: color 0.2s;
 }
 
 .links-list li a:hover { color: var(--color-accent); }
-
-.links-list li a::before {
-  content: '→';
-  font-size: 0.8rem;
-  color: var(--color-green-light);
-}
 
 /* ===== Footer ===== */
 .footer {
@@ -402,12 +431,14 @@ a:hover { text-decoration: underline; }
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.92);
   z-index: 1000;
   cursor: pointer;
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .lightbox.active { display: flex; }
@@ -460,7 +491,7 @@ a:hover { text-decoration: underline; }
 
 <!-- ===== Header ===== -->
 <header class="header">
-  <img src="images/logo_morians.png" alt="MORIANS 城陽森のボランティア ロゴ" class="header-logo">
+  <img src="images/logo_morians.png" alt="MORIANS 常陽森のボランティア ロゴ" class="header-logo">
   <h1 class="header-title">MORIANSを支援してくださった<br>皆さまへ</h1>
   <p class="header-subtitle">森でほっとココア vol.3 ── 支援者限定ページ</p>
   <hr class="header-line">
@@ -477,7 +508,7 @@ a:hover { text-decoration: underline; }
 
     <div class="photo-single">
       <img src="images/99_field.jpg" alt="冬の若宮の森。青空の下に広がる落葉した木々と東屋" class="lightbox-trigger">
-      <p class="photo-caption">MORIANSの活動拠点、京都府城陽市・若宮の森</p>
+      <p class="photo-caption">MORIANSの活動拠点、茨城県水戸市 若宮の森</p>
     </div>
   </section>
 
@@ -486,7 +517,7 @@ a:hover { text-decoration: underline; }
     <p class="section-label">About MORIANS</p>
     <h2 class="section-title">若宮の森を守る人たち</h2>
 
-    <p>城陽MORIANS（じょうよう モリアンズ）は、京都府城陽市の若宮の森を拠点に活動する森林ボランティアグループです。森林の環境保全や里山管理を通じて、地域の自然を守り続けています。</p>
+    <p>常陽森のボランティアMORIANS（モリアンズ）は、茨城県水戸市 若宮の森を拠点に活動する森林ボランティアグループです。森林の環境保全や里山管理を通じて、地域の自然を守り続けています。</p>
     <p>この森は四季折々の恵みをもたらしてくれます。春にはタケノコ、秋には栗、そして畑で育てたさつまいもを使ったほしいも作り。自然と人の営みが、ここでは穏やかにつながっています。</p>
 
     <div class="season-cards">
@@ -512,7 +543,7 @@ a:hover { text-decoration: underline; }
 
     <div class="photo-single">
       <img src="images/98_meeting.jpg" alt="東屋でくつろぎながらミーティングするMORIANSのメンバーたち" class="lightbox-trigger">
-      <p class="photo-caption">東屋でのミーティング風景。焚き火の煙が漂う中、和やかに話し合います</p>
+      <p class="photo-caption">東屋でのミーティング風景。たき火の煙が漂う中、和やかに話し合います</p>
     </div>
   </section>
 
@@ -521,7 +552,7 @@ a:hover { text-decoration: underline; }
     <p class="section-label">Satoyama Experience</p>
     <h2 class="section-title">里山自然体験</h2>
 
-    <p>MORIANSでは毎年7月、地域のこどもたちを招いて「里山自然体験」を開催しています。竹の弓矢づくりや苗ポットづくりなど、森の素材を使った体験をメンバーが丁寧に指導します。</p>
+    <p>MORIANSでは毎年7月、地域のこどもたちを招いて「里山自然体験」を開催しています。竹の弓矢づくりや竹細工づくりなど、森の素材を使った体験をメンバーが丁寧に指導します。</p>
     <p>こどもたちの真剣な眼差しと、それを見守るメンバーの温かい笑顔。この森で育まれる関係が、地域のつながりを支えています。</p>
 
     <div class="photo-grid">
@@ -640,6 +671,14 @@ lightbox.addEventListener('click', () => {
   document.body.style.overflow = '';
 });
 
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
 // Scroll Reveal
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -647,7 +686,7 @@ const observer = new IntersectionObserver((entries) => {
       entry.target.classList.add('visible');
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.section').forEach(s => observer.observe(s));
 </script>
